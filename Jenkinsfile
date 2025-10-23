@@ -27,10 +27,10 @@ node {
                 sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm"
             }
             stage('Install Snyk CLI') {
-               sh """
+               sh '''
                    curl -Lo ./snyk $(curl -s https://api.github.com/repos/snyk/snyk/releases/latest | grep "browser_download_url.*snyk-linux" | cut -d ':' -f 2,3 | tr -d \" | tr -d ' ')
                    chmod +x snyk
-               """
+               '''
             }
             stage('Snyk test') {
                sh './snyk test --all-projects'
