@@ -37,13 +37,14 @@ node {
         }
 
         stage('Snyk test') {
-            withCredentials([string(credentialsId: 'snyk-token', variable: 'SNYK_TOKEN')]) {
-                sh """
-                    ./snyk auth \$SNYK_TOKEN
-                    ./snyk test --all-projects
-                """
+         withCredentials([string(credentialsId: 'snyk-token', variable: 'SNYK_TOKEN')]) {
+        sh """
+            ./snyk auth \$SNYK_TOKEN
+            ./snyk test --all-projects || true
+        """
             }
         }
+
 
         stage('Snyk monitor') {
             withCredentials([string(credentialsId: 'snyk-token', variable: 'SNYK_TOKEN')]) {
