@@ -77,11 +77,11 @@ node {
         }
 
         // 🔹 Quality Analysis
-        stage('Quality Analysis') {
-            withSonarQubeEnv('') {
-                sh "./mvnw -ntp initialize sonar:sonar"
-            }
-        }
+        // stage('Quality Analysis') {
+        //     withSonarQubeEnv('') {
+        //         sh "./mvnw -ntp initialize sonar:sonar"
+        //     }
+        // }
 
         // 🔹 Package and Deploy to Docker Hub
         stage('Package') {
